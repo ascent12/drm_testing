@@ -90,12 +90,10 @@ void modeset(int fd)
 
 		/* Save old CRTC */
 		drmModeEncoder *curr_enc = drmModeGetEncoder(fd, conn->encoder_id);
-		if (!curr_enc)
-			goto skip;
-		dpy->old_crtc = drmModeGetCrtc(fd, curr_enc->crtc_id);
-		drmModeFreeEncoder(curr_enc);
-
-skip:
+		if (curr_enc) {
+			dpy->old_crtc = drmModeGetCrtc(fd, curr_enc->crtc_id);
+			drmModeFreeEncoder(curr_enc);
+		}
 
 		/* Get new CRTC */
 		for (int j = 0; j < conn->count_encoders; ++j) {
@@ -378,6 +376,7 @@ void rendering_cleanup(int fd)
 	gbm_device_destroy(render.gbm);
 }
 
+/*
 int get_fd(const char *path)
 {
 	struct stat st;
@@ -391,6 +390,7 @@ int get_fd(const char *path)
 
 	return -1;
 }
+*/
 
 int main()
 {
