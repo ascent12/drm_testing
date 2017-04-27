@@ -21,8 +21,6 @@
 
 #include <GLES3/gl3.h>
 
-#include <dbus/dbus.h>
-
 PFNEGLGETPLATFORMDISPLAYEXTPROC eglGetPlatformDisplayEXT;
 PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC eglCreatePlatformWindowSurfaceEXT;
 
@@ -375,22 +373,6 @@ void rendering_cleanup(int fd)
 
 	gbm_device_destroy(render.gbm);
 }
-
-/*
-int get_fd(const char *path)
-{
-	struct stat st;
-	if (stat(path, &st) < 0 || !S_ISCHR(st.st_mode))
-		return -1;
-
-	uint32_t maj = major(st.st_rdev);
-	uint32_t min = minor(st.st_rdev);
-
-	DBusMessage *m;
-
-	return -1;
-}
-*/
 
 int main()
 {

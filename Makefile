@@ -1,5 +1,4 @@
-LIBS = #libudev libinput libdrm gbm egl glesv2
-LIBS = libdrm gbm egl glesv2 dbus-1
+LIBS = libdrm gbm egl glesv2
 
 CFLAGS += -g -std=gnu11 -Wall -Wextra -Wno-unused-parameter $(shell pkg-config --cflags $(LIBS))
 LDFLAGS = -g
